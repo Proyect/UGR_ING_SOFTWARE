@@ -37,3 +37,24 @@ Equipo de Análisis
 
 - HTML / CSS / JavaScript
 - GitHub Pages — publicación del sitio
+
+
+## Cómo colaborar
+
+```bash
+# 1. Clonar el repo
+git clone https://github.com/hernanvieira/UGR_ING_SOFTWARE.git
+
+# 2. Abrir en VS Code
+code UGR_ING_SOFTWARE
+
+# 3. Crear tu rama y hacer cambios
+git checkout -b feature/nombre-descriptivo
+
+# ... editá los archivos que necesites ...
+git add .
+git commit -m "descripción del cambio"
+git push origin feature/nombre-descriptivo
+```
+
+Luego abrí un **Pull Request** en GitHub para que el equipo revise antes de mergear a `main`.
