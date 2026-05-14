@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ChurnGuard — Demo (Visor)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <div class="brand__logo">CG</div>
+      <div class="brand__text">
+        <div class="brand__title">ChurnGuard</div>
+        <div class="brand__sub">Demo estática · Visor de pantallas</div>
+      </div>
+    </div>
+
+    <nav class="nav" aria-label="Pantallas">
+      <a class="nav__item" href="./index.html">Inicio</a>
+      <button class="nav__item" data-view="dashboard_ejecutivo">Dashboard ejecutivo</button>
+      <button class="nav__item" data-view="prediccion_individual">Predicción individual</button>
+      <button class="nav__item" data-view="clientes_en_riesgo">Clientes en riesgo</button>
+      <button class="nav__item" data-view="detalle_cliente">Detalle cliente</button>
+      <button class="nav__item" data-view="scoring_masivo">Scoring masivo</button>
+      <button class="nav__item" data-view="campanas_retencion">Campañas</button>
+      <button class="nav__item" data-view="analisis_features_desarrollo">Análisis de producto</button>
+    </nav>
+  </header>
+
+  <main class="main">
+    <div class="viewer">
+      <div class="viewer__meta">
+        <div>
+          <div class="viewer__title" id="viewerTitle">Cargando…</div>
+          <div class="viewer__hint">Este demo es una maqueta (sin backend). Navegá por las vistas para revisar el diseño.</div>
+        </div>
+        <div class="viewer__actions">
+          <a class="link" id="openRaw" href="#" target="_blank" rel="noreferrer">Abrir HTML original</a>
+        </div>
+      </div>
+
+      <div class="viewer__frame" id="mount" aria-live="polite"></div>
+
+      <div class="viewer__footer">
+        Grupo 4 · Ingeniería del Software · CRISP-DM
+      </div>
+    </div>
+  </main>
+
+  <script src="./site.js"></script>
+</body>
+</html>

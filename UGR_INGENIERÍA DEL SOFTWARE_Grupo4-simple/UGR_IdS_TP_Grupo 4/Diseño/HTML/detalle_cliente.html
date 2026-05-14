@@ -1,0 +1,139 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.screen { background: var(--color-background-tertiary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); overflow: hidden; }
+.layout { display: grid; grid-template-columns: 160px 1fr; min-height: 560px; }
+.sidebar { background: #1e2235; padding: 16px 0; }
+.logo { padding: 0 16px 16px; font-size: 14px; font-weight: 500; color: #fff; display: flex; align-items: center; gap: 8px; }
+.logo-icon { width: 22px; height: 22px; background: #4f6ef7; border-radius: 6px; }
+.nav-item { padding: 8px 16px; font-size: 12px; color: rgba(255,255,255,0.55); display: flex; align-items: center; gap: 8px; }
+.nav-item.active { background: rgba(255,255,255,0.1); color: #fff; }
+.nav-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.5; }
+.nav-item.active .nav-dot { opacity: 1; background: #4f6ef7; }
+.main { padding: 20px; }
+.back { font-size: 11px; color: var(--color-text-secondary); margin-bottom: 8px; }
+.page-title { font-size: 18px; font-weight: 500; color: var(--color-text-primary); }
+.page-sub { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; margin-bottom: 14px; }
+.top-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 14px; }
+.client-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.avatar { width: 40px; height: 40px; border-radius: 50%; background: #4f6ef7; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; color: #fff; flex-shrink: 0; }
+.client-name { font-size: 15px; font-weight: 500; color: var(--color-text-primary); }
+.client-meta { font-size: 11px; color: var(--color-text-secondary); }
+.active-pill { font-size: 10px; padding: 2px 7px; border-radius: 10px; background: var(--color-background-success); color: var(--color-text-success); margin-left: 6px; }
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.stat { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 8px 10px; }
+.stat-label { font-size: 10px; color: var(--color-text-secondary); }
+.stat-val { font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
+.risk-pct { font-size: 32px; font-weight: 500; color: #E24B4A; text-align: center; padding: 8px 0; }
+.risk-label { font-size: 11px; color: var(--color-text-secondary); text-align: center; }
+.risk-badge { display: flex; justify-content: center; margin-top: 4px; }
+.pill-red { font-size: 11px; padding: 3px 12px; border-radius: 10px; background: var(--color-background-danger); color: var(--color-text-danger); font-weight: 500; }
+.alert-action { background: var(--color-background-danger); border-radius: var(--border-radius-md); padding: 7px 10px; font-size: 11px; color: var(--color-text-danger); margin-top: 8px; }
+.bottom-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+.card-title { font-size: 12px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 10px; }
+.factor-row { display: flex; align-items: center; gap: 8px; padding: 5px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.factor-row:last-child { border-bottom: none; }
+.factor-label { font-size: 11px; color: var(--color-text-primary); flex: 1; }
+.factor-bar { width: 60px; height: 6px; border-radius: 3px; background: var(--color-background-secondary); overflow: hidden; }
+.factor-fill { height: 100%; border-radius: 3px; background: #E24B4A; }
+.factor-pct { font-size: 10px; color: var(--color-text-secondary); width: 28px; text-align: right; }
+.hist-item { display: flex; gap: 8px; padding: 5px 0; border-bottom: 0.5px solid var(--color-border-tertiary); align-items: flex-start; }
+.hist-item:last-child { border-bottom: none; }
+.hist-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 3px; }
+.hist-text { font-size: 11px; color: var(--color-text-primary); }
+.hist-date { font-size: 10px; color: var(--color-text-secondary); }
+.action-row { padding: 5px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.action-row:last-child { border-bottom: none; }
+.action-title { font-size: 11px; color: var(--color-text-primary); font-weight: 500; }
+.action-sub { font-size: 10px; color: var(--color-text-secondary); }
+.priority-high { font-size: 10px; color: var(--color-text-danger); }
+.priority-med { font-size: 10px; color: var(--color-text-warning); }
+.topbar { background: var(--color-background-primary); border-bottom: 0.5px solid var(--color-border-tertiary); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; }
+.topbar-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+.badge-purple { font-size: 11px; padding: 3px 10px; border-radius: 10px; background: #EEEDFE; color: #3C3489; }
+</style>
+
+<div class="screen">
+  <div class="topbar">
+    <span class="topbar-title">ChurnGuard — Detalle del cliente</span>
+    <span class="badge-purple">Soporte · Ejecutivos de cuenta</span>
+  </div>
+  <div class="layout">
+    <div class="sidebar">
+      <div class="logo"><div class="logo-icon"></div>ChurnGuard</div>
+      <div class="nav-item"><div class="nav-dot"></div>Inicio</div>
+      <div class="nav-item"><div class="nav-dot"></div>Predicción</div>
+      <div class="nav-item"><div class="nav-dot"></div>Clientes en riesgo</div>
+      <div class="nav-item active"><div class="nav-dot"></div>Detalle cliente</div>
+      <div class="nav-item"><div class="nav-dot"></div>Scoring masivo</div>
+      <div class="nav-item"><div class="nav-dot"></div>Campañas</div>
+      <div class="nav-item"><div class="nav-dot"></div>Configuración</div>
+    </div>
+    <div class="main">
+      <div class="back">← Volver a clientes</div>
+      <div class="page-title">Detalle del cliente</div>
+      <div class="page-sub">Vista completa del cliente y factores de riesgo de churn.</div>
+      <div class="top-row">
+        <div class="card">
+          <div class="client-header">
+            <div class="avatar">TN</div>
+            <div>
+              <div class="client-name">TechNova Solutions <span class="active-pill">Activo</span></div>
+              <div class="client-meta">Cliente desde 05/01/2023 · ID: 10234</div>
+            </div>
+          </div>
+          <div class="stat-grid">
+            <div class="stat"><div class="stat-label">Plan</div><div class="stat-val">Básico</div></div>
+            <div class="stat"><div class="stat-label">MRR</div><div class="stat-val">$1,250</div></div>
+            <div class="stat"><div class="stat-label">Antigüedad</div><div class="stat-val">16 meses</div></div>
+            <div class="stat"><div class="stat-label">Tickets abiertos</div><div class="stat-val" style="color:var(--color-text-danger);">5</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Probabilidad de churn</div>
+          <div class="risk-pct">86%</div>
+          <div class="risk-label">probabilidad</div>
+          <div class="risk-badge"><span class="pill-red">Riesgo alto</span></div>
+          <div class="alert-action">Acción recomendada: contactar en los próximos 48h</div>
+        </div>
+      </div>
+      <div class="bottom-row">
+        <div class="card">
+          <div class="card-title">Factores que explican el riesgo</div>
+          <div class="factor-row"><span class="factor-label">Baja satisfacción (NPS)</span><div class="factor-bar"><div class="factor-fill" style="width:100%;"></div></div><span class="factor-pct">32%</span></div>
+          <div class="factor-row"><span class="factor-label">Tickets escalados</span><div class="factor-bar"><div class="factor-fill" style="width:81%;"></div></div><span class="factor-pct">26%</span></div>
+          <div class="factor-row"><span class="factor-label">Bajo uso del producto</span><div class="factor-bar"><div class="factor-fill" style="width:69%;"></div></div><span class="factor-pct">22%</span></div>
+          <div class="factor-row"><span class="factor-label">Renovación manual</span><div class="factor-bar"><div class="factor-fill" style="width:37%;background:#EF9F27;"></div></div><span class="factor-pct">12%</span></div>
+          <div class="factor-row"><span class="factor-label">Facturación vencida</span><div class="factor-bar"><div class="factor-fill" style="width:25%;background:#EF9F27;"></div></div><span class="factor-pct">8%</span></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Historial reciente</div>
+          <div class="hist-item"><div class="hist-dot" style="background:#E24B4A;"></div><div><div class="hist-text">Ticket escalado</div><div class="hist-date">03 jun. 2024 · 10:24</div></div></div>
+          <div class="hist-item"><div class="hist-dot" style="background:#EF9F27;"></div><div><div class="hist-text">Disminución de uso (−42%)</div><div class="hist-date">28 may. 2024 · 15:12</div></div></div>
+          <div class="hist-item"><div class="hist-dot" style="background:#378ADD;"></div><div><div class="hist-text">NPS recibido: 4/10</div><div class="hist-date">20 may. 2024 · 09:47</div></div></div>
+          <div class="hist-item"><div class="hist-dot" style="background:#639922;"></div><div><div class="hist-text">Pago recibido</div><div class="hist-date">05 may. 2024 · 11:03</div></div></div>
+          <div class="hist-item"><div class="hist-dot" style="background:var(--color-text-secondary);"></div><div><div class="hist-text">Cliente creado</div><div class="hist-date">05 ene. 2023 · 08:30</div></div></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Acciones recomendadas</div>
+          <div class="action-row">
+            <div class="action-title">Contactar al cliente</div>
+            <div class="action-sub">Conversación proactiva</div>
+            <div class="priority-high">Alta prioridad</div>
+          </div>
+          <div class="action-row">
+            <div class="action-title">Ofrecer incentivo</div>
+            <div class="action-sub">Oferta especial alineada a su uso</div>
+            <div class="priority-med">Media prioridad</div>
+          </div>
+          <div class="action-row">
+            <div class="action-title">Monitorear uso y satisfacción</div>
+            <div class="action-sub">Seguimiento semanal</div>
+            <div class="priority-med">Media prioridad</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

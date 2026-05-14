@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ChurnGuard — Inicio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <div class="brand__logo">CG</div>
+      <div class="brand__text">
+        <div class="brand__title">ChurnGuard</div>
+        <div class="brand__sub">Pantalla principal · Navegación a vistas</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="viewer">
+      <div class="viewer__meta">
+        <div>
+          <div class="viewer__title">Demo del producto (maqueta)</div>
+          <div class="viewer__hint">Seleccioná una sección para abrir su pantalla. El link público que vas a compartir puede ser este <code>index.html</code>.</div>
+        </div>
+        <div class="viewer__actions">
+          <a class="link" href="./viewer.html?view=dashboard_ejecutivo">Abrir visor</a>
+        </div>
+      </div>
+
+      <div class="viewer__frame">
+        <div style="max-width:980px;margin:0 auto;">
+          <div class="nav" aria-label="Vistas" style="margin-bottom:12px;">
+            <a class="nav__item" href="./viewer.html?view=dashboard_ejecutivo">Dashboard ejecutivo</a>
+            <a class="nav__item" href="./viewer.html?view=prediccion_individual">Predicción individual</a>
+            <a class="nav__item" href="./viewer.html?view=clientes_en_riesgo">Clientes en riesgo</a>
+            <a class="nav__item" href="./viewer.html?view=detalle_cliente">Detalle cliente</a>
+            <a class="nav__item" href="./viewer.html?view=scoring_masivo">Scoring masivo</a>
+            <a class="nav__item" href="./viewer.html?view=campanas_retencion">Campañas</a>
+            <a class="nav__item" href="./viewer.html?view=analisis_features_desarrollo">Análisis de producto</a>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;">
+            <a class="nav__item" href="./viewer.html?view=dashboard_ejecutivo" style="text-decoration:none;">
+              <div style="font-weight:600;">Dashboard ejecutivo</div>
+              <div style="margin-top:4px;font-size:12px;color:rgba(15,23,42,0.62);">KPIs de churn, MRR en riesgo y resumen para dirección.</div>
+            </a>
+            <a class="nav__item" href="./viewer.html?view=prediccion_individual" style="text-decoration:none;">
+              <div style="font-weight:600;">Predicción individual</div>
+              <div style="margin-top:4px;font-size:12px;color:rgba(15,23,42,0.62);">Estimación del riesgo de churn para una cuenta específica.</div>
+            </a>
+            <a class="nav__item" href="./viewer.html?view=clientes_en_riesgo" style="text-decoration:none;">
+              <div style="font-weight:600;">Clientes en riesgo</div>
+              <div style="margin-top:4px;font-size:12px;color:rgba(15,23,42,0.62);">Listado priorizado para soporte y marketing.</div>
+            </a>
+            <a class="nav__item" href="./viewer.html?view=detalle_cliente" style="text-decoration:none;">
+              <div style="font-weight:600;">Detalle cliente</div>
+              <div style="margin-top:4px;font-size:12px;color:rgba(15,23,42,0.62);">Perfil completo + factores que explican el riesgo.</div>
+            </a>
+            <a class="nav__item" href="./viewer.html?view=scoring_masivo" style="text-decoration:none;">
+              <div style="font-weight:600;">Scoring masivo</div>
+              <div style="margin-top:4px;font-size:12px;color:rgba(15,23,42,0.62);">Carga de CSV y resultados por lote (maqueta).</div>
+            </a>
+            <a class="nav__item" href="./viewer.html?view=campanas_retencion" style="text-decoration:none;">
+              <div style="font-weight:600;">Campañas de retención</div>
+              <div style="margin-top:4px;font-size:12px;color:rgba(15,23,42,0.62);">Gestión de campañas para reducir churn.</div>
+            </a>
+            <a class="nav__item" href="./viewer.html?view=analisis_features_desarrollo" style="text-decoration:none;grid-column:span 3;">
+              <div style="font-weight:600;">Análisis de features del producto</div>
+              <div style="margin-top:4px;font-size:12px;color:rgba(15,23,42,0.62);">Insights para el área de desarrollo: qué funcionalidades retienen y cuáles correlacionan con churn.</div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="viewer__footer">
+        Grupo 4 · Ingeniería del Software · CRISP-DM
+      </div>
+    </div>
+  </main>
+</body>
+</html>

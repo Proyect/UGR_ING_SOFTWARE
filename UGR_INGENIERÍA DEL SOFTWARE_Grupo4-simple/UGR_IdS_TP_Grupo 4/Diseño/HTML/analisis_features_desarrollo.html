@@ -1,0 +1,149 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.screen { background: var(--color-background-tertiary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); overflow: hidden; }
+.layout { display: grid; grid-template-columns: 160px 1fr; min-height: 540px; }
+.sidebar { background: #1e2235; padding: 16px 0; }
+.logo { padding: 0 16px 16px; font-size: 14px; font-weight: 500; color: #fff; display: flex; align-items: center; gap: 8px; }
+.logo-icon { width: 22px; height: 22px; background: #4f6ef7; border-radius: 6px; }
+.nav-item { padding: 8px 16px; font-size: 12px; color: rgba(255,255,255,0.55); display: flex; align-items: center; gap: 8px; }
+.nav-item.active { background: rgba(255,255,255,0.1); color: #fff; }
+.nav-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.5; }
+.nav-item.active .nav-dot { opacity: 1; background: #4f6ef7; }
+.main { padding: 20px; }
+.page-title { font-size: 18px; font-weight: 500; color: var(--color-text-primary); }
+.page-sub { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; margin-bottom: 14px; }
+.top-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+.kpi { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 10px 12px; }
+.kpi-label { font-size: 11px; color: var(--color-text-secondary); }
+.kpi-value { font-size: 18px; font-weight: 500; color: var(--color-text-primary); }
+.kpi-sub { font-size: 10px; color: var(--color-text-secondary); margin-top: 1px; }
+.content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 14px; }
+.card-title { font-size: 12px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 10px; }
+.feat-row { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.feat-row:last-child { border-bottom: none; }
+.feat-name { font-size: 12px; color: var(--color-text-primary); flex: 1; }
+.feat-sub { font-size: 10px; color: var(--color-text-secondary); }
+.bar-track { width: 80px; background: var(--color-background-secondary); border-radius: 3px; height: 6px; overflow: hidden; flex-shrink: 0; }
+.bar-fill-green { height: 100%; border-radius: 3px; background: #639922; }
+.bar-fill-red { height: 100%; border-radius: 3px; background: #E24B4A; }
+.pct-val { font-size: 11px; width: 36px; text-align: right; flex-shrink: 0; }
+.pill { font-size: 10px; padding: 2px 7px; border-radius: 10px; }
+.pill-green { background: var(--color-background-success); color: var(--color-text-success); }
+.pill-red { background: var(--color-background-danger); color: var(--color-text-danger); }
+.pill-amber { background: var(--color-background-warning); color: var(--color-text-warning); }
+.insight-row { padding: 7px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.insight-row:last-child { border-bottom: none; }
+.insight-title { font-size: 12px; font-weight: 500; color: var(--color-text-primary); }
+.insight-body { font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; line-height: 1.5; }
+.topbar { background: var(--color-background-primary); border-bottom: 0.5px solid var(--color-border-tertiary); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; }
+.topbar-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+.badge-indigo { font-size: 11px; padding: 3px 10px; border-radius: 10px; background: #EEEDFE; color: #3C3489; }
+.filter-row { display: flex; gap: 8px; margin-bottom: 12px; }
+.filter-select { font-size: 11px; padding: 5px 10px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-primary); color: var(--color-text-secondary); }
+</style>
+
+<div class="screen">
+  <div class="topbar">
+    <span class="topbar-title">ChurnGuard — Análisis de features del producto</span>
+    <span class="badge-indigo">Área de desarrollo</span>
+  </div>
+  <div class="layout">
+    <div class="sidebar">
+      <div class="logo"><div class="logo-icon"></div>ChurnGuard</div>
+      <div class="nav-item"><div class="nav-dot"></div>Inicio</div>
+      <div class="nav-item"><div class="nav-dot"></div>Predicción</div>
+      <div class="nav-item"><div class="nav-dot"></div>Clientes en riesgo</div>
+      <div class="nav-item"><div class="nav-dot"></div>Detalle cliente</div>
+      <div class="nav-item"><div class="nav-dot"></div>Scoring masivo</div>
+      <div class="nav-item"><div class="nav-dot"></div>Campañas</div>
+      <div class="nav-item active"><div class="nav-dot"></div>Análisis de producto</div>
+    </div>
+    <div class="main">
+      <div class="page-title">Análisis de features del producto</div>
+      <div class="page-sub">¿Qué funcionalidades retienen clientes y cuáles están asociadas al churn?</div>
+      <div class="top-grid">
+        <div class="kpi"><div class="kpi-label">Features analizadas</div><div class="kpi-value">24</div><div class="kpi-sub">En el período seleccionado</div></div>
+        <div class="kpi"><div class="kpi-label">Features de alto riesgo</div><div class="kpi-value" style="color:var(--color-text-danger);">6</div><div class="kpi-sub">Uso correlacionado con churn</div></div>
+        <div class="kpi"><div class="kpi-label">Features de retención</div><div class="kpi-value" style="color:var(--color-text-success);">9</div><div class="kpi-sub">Uso correlacionado con permanencia</div></div>
+      </div>
+      <div class="filter-row">
+        <select class="filter-select"><option>Plan: Todos</option></select>
+        <select class="filter-select"><option>Industria: Todas</option></select>
+        <select class="filter-select"><option>Período: Último trimestre</option></select>
+      </div>
+      <div class="content-grid">
+        <div class="card">
+          <div class="card-title">Features que retienen clientes (uso → menor churn)</div>
+          <div class="feat-row">
+            <div><div class="feat-name">Dashboard analytics</div><div class="feat-sub">Clientes activos: 78%</div></div>
+            <div class="bar-track"><div class="bar-fill-green" style="width:92%;"></div></div>
+            <span class="pct-val" style="color:var(--color-text-success);">−38%</span>
+            <span class="pill pill-green">Alto impacto</span>
+          </div>
+          <div class="feat-row">
+            <div><div class="feat-name">Integraciones API</div><div class="feat-sub">Clientes activos: 65%</div></div>
+            <div class="bar-track"><div class="bar-fill-green" style="width:78%;"></div></div>
+            <span class="pct-val" style="color:var(--color-text-success);">−29%</span>
+            <span class="pill pill-green">Alto impacto</span>
+          </div>
+          <div class="feat-row">
+            <div><div class="feat-name">Reportes automáticos</div><div class="feat-sub">Clientes activos: 54%</div></div>
+            <div class="bar-track"><div class="bar-fill-green" style="width:61%;"></div></div>
+            <span class="pct-val" style="color:var(--color-text-success);">−22%</span>
+            <span class="pill pill-green">Medio</span>
+          </div>
+          <div class="feat-row">
+            <div><div class="feat-name">Colaboración en equipo</div><div class="feat-sub">Clientes activos: 41%</div></div>
+            <div class="bar-track"><div class="bar-fill-green" style="width:48%;"></div></div>
+            <span class="pct-val" style="color:var(--color-text-success);">−17%</span>
+            <span class="pill pill-green">Medio</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Features asociadas al churn (bajo uso → mayor riesgo)</div>
+          <div class="feat-row">
+            <div><div class="feat-name">Onboarding wizard</div><div class="feat-sub">Completado: 34% de los churned</div></div>
+            <div class="bar-track"><div class="bar-fill-red" style="width:88%;"></div></div>
+            <span class="pct-val" style="color:var(--color-text-danger);">+41%</span>
+            <span class="pill pill-red">Crítico</span>
+          </div>
+          <div class="feat-row">
+            <div><div class="feat-name">Notificaciones push</div><div class="feat-sub">Activas: 28% de los churned</div></div>
+            <div class="bar-track"><div class="bar-fill-red" style="width:66%;"></div></div>
+            <span class="pct-val" style="color:var(--color-text-danger);">+31%</span>
+            <span class="pill pill-red">Alto</span>
+          </div>
+          <div class="feat-row">
+            <div><div class="feat-name">Exportación de datos</div><div class="feat-sub">Usada: 19% de los churned</div></div>
+            <div class="bar-track"><div class="bar-fill-red" style="width:48%;"></div></div>
+            <span class="pct-val" style="color:var(--color-text-danger);">+22%</span>
+            <span class="pill pill-amber">Medio</span>
+          </div>
+          <div class="feat-row">
+            <div><div class="feat-name">Configuración avanzada</div><div class="feat-sub">Accedida: 12% de los churned</div></div>
+            <div class="bar-track"><div class="bar-fill-red" style="width:30%;"></div></div>
+            <span class="pct-val" style="color:var(--color-text-danger);">+14%</span>
+            <span class="pill pill-amber">Medio</span>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Insights accionables para el equipo de desarrollo</div>
+        <div class="insight-row">
+          <div class="insight-title">Mejorar el onboarding wizard — impacto crítico</div>
+          <div class="insight-body">Solo el 34% de los clientes que churnearon completaron el wizard. Simplificar el flujo o activar un asistente proactivo podría reducir la tasa de abandono temprana.</div>
+        </div>
+        <div class="insight-row">
+          <div class="insight-title">Promover el Dashboard analytics desde el día 1</div>
+          <div class="insight-body">Los clientes que usan esta feature tienen un 38% menos de churn. Destacarla en la pantalla de inicio o en el onboarding aumentaría el engagement.</div>
+        </div>
+        <div class="insight-row">
+          <div class="insight-title">Revisar la feature de notificaciones push</div>
+          <div class="insight-body">Baja adopción entre los churned. Puede indicar problemas de UX o que los usuarios no perciben su valor. Vale realizar entrevistas.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

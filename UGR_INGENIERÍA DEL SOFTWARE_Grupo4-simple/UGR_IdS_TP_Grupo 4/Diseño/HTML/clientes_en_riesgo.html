@@ -1,0 +1,135 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.screen { background: var(--color-background-tertiary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); overflow: hidden; }
+.layout { display: grid; grid-template-columns: 160px 1fr; min-height: 520px; }
+.sidebar { background: #1e2235; padding: 16px 0; }
+.logo { padding: 0 16px 16px; font-size: 14px; font-weight: 500; color: #fff; display: flex; align-items: center; gap: 8px; }
+.logo-icon { width: 22px; height: 22px; background: #4f6ef7; border-radius: 6px; }
+.nav-item { padding: 8px 16px; font-size: 12px; color: rgba(255,255,255,0.55); display: flex; align-items: center; gap: 8px; }
+.nav-item.active { background: rgba(255,255,255,0.1); color: #fff; }
+.nav-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.5; }
+.nav-item.active .nav-dot { opacity: 1; background: #4f6ef7; }
+.main { padding: 20px; background: var(--color-background-tertiary); }
+.page-title { font-size: 18px; font-weight: 500; color: var(--color-text-primary); }
+.page-sub { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; margin-bottom: 14px; }
+.kpi-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+.kpi { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 10px 12px; }
+.kpi-label { font-size: 11px; color: var(--color-text-secondary); }
+.kpi-value { font-size: 20px; font-weight: 500; color: var(--color-text-primary); }
+.kpi-sub { font-size: 10px; color: var(--color-text-secondary); margin-top: 1px; }
+.filter-row { display: flex; gap: 8px; margin-bottom: 12px; }
+.filter-select { font-size: 11px; padding: 5px 10px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-primary); color: var(--color-text-secondary); }
+.table-wrap { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); overflow: hidden; }
+.thead { display: grid; grid-template-columns: 2fr 1fr 1.5fr 1fr 1.2fr 1.2fr 1fr; padding: 8px 12px; background: var(--color-background-secondary); font-size: 10px; color: var(--color-text-secondary); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+.trow { display: grid; grid-template-columns: 2fr 1fr 1.5fr 1fr 1.2fr 1.2fr 1fr; padding: 9px 12px; border-bottom: 0.5px solid var(--color-border-tertiary); align-items: center; font-size: 12px; }
+.trow:last-child { border-bottom: none; }
+.client-name { font-weight: 500; color: var(--color-text-primary); font-size: 12px; }
+.client-id { font-size: 10px; color: var(--color-text-secondary); }
+.bar-wrap { display: flex; align-items: center; gap: 6px; }
+.bar-track { flex: 1; background: var(--color-background-secondary); border-radius: 3px; height: 6px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 3px; }
+.pill { font-size: 10px; padding: 2px 7px; border-radius: 10px; font-weight: 500; white-space: nowrap; }
+.pill-red { background: var(--color-background-danger); color: var(--color-text-danger); }
+.pill-amber { background: var(--color-background-warning); color: var(--color-text-warning); }
+.btn-sm { font-size: 10px; padding: 3px 8px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-secondary); background: var(--color-background-primary); color: var(--color-text-primary); cursor: pointer; }
+.btn-primary-sm { font-size: 10px; padding: 3px 8px; border-radius: var(--border-radius-md); border: none; background: #4f6ef7; color: #fff; cursor: pointer; }
+.topbar { background: var(--color-background-primary); border-bottom: 0.5px solid var(--color-border-tertiary); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; }
+.topbar-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+.badge-amber { font-size: 11px; padding: 3px 10px; border-radius: 10px; background: var(--color-background-warning); color: var(--color-text-warning); }
+</style>
+
+<div class="screen">
+  <div class="topbar">
+    <span class="topbar-title">ChurnGuard — Clientes en riesgo</span>
+    <span class="badge-amber">Soporte · Marketing</span>
+  </div>
+  <div class="layout">
+    <div class="sidebar">
+      <div class="logo"><div class="logo-icon"></div>ChurnGuard</div>
+      <div class="nav-item"><div class="nav-dot"></div>Inicio</div>
+      <div class="nav-item"><div class="nav-dot"></div>Predicción</div>
+      <div class="nav-item active"><div class="nav-dot"></div>Clientes en riesgo</div>
+      <div class="nav-item"><div class="nav-dot"></div>Detalle cliente</div>
+      <div class="nav-item"><div class="nav-dot"></div>Scoring masivo</div>
+      <div class="nav-item"><div class="nav-dot"></div>Campañas</div>
+      <div class="nav-item"><div class="nav-dot"></div>Configuración</div>
+    </div>
+    <div class="main">
+      <div class="page-title">Clientes en riesgo</div>
+      <div class="page-sub">Identificá y priorizá los clientes con mayor probabilidad de churn.</div>
+      <div class="kpi-row">
+        <div class="kpi">
+          <div class="kpi-label">Alto riesgo</div>
+          <div class="kpi-value" style="color:var(--color-text-danger);">687</div>
+          <div class="kpi-sub">14.0% del total de clientes</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Riesgo medio</div>
+          <div class="kpi-value" style="color:var(--color-text-warning);">1,582</div>
+          <div class="kpi-sub">32.4% del total de clientes</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Cuentas intervenidas</div>
+          <div class="kpi-value" style="color:var(--color-text-success);">342</div>
+          <div class="kpi-sub">22.1% de alto riesgo</div>
+        </div>
+      </div>
+      <div class="filter-row">
+        <select class="filter-select"><option>Plan: Todos</option></select>
+        <select class="filter-select"><option>Nivel de riesgo: Todos</option></select>
+        <select class="filter-select"><option>Ejecutivo: Todos</option></select>
+      </div>
+      <div class="table-wrap">
+        <div class="thead">
+          <span>Cliente</span><span>Plan</span><span>Probabilidad</span><span>Riesgo</span><span>Última activ.</span><span>Ejecutivo</span><span>Acción</span>
+        </div>
+        <div class="trow">
+          <div><div class="client-name">TechNova Solutions</div><div class="client-id">ID: C-10458</div></div>
+          <span style="font-size:11px;color:var(--color-text-secondary);">Básico</span>
+          <div class="bar-wrap"><div class="bar-track"><div class="bar-fill" style="width:78%;background:#E24B4A;"></div></div><span style="font-size:11px;">78%</span></div>
+          <span class="pill pill-red">Alto</span>
+          <span style="font-size:11px;color:var(--color-text-secondary);">05/06</span>
+          <span style="font-size:11px;">Laura G.</span>
+          <button class="btn-primary-sm">Contactar</button>
+        </div>
+        <div class="trow">
+          <div><div class="client-name">DataPro Analytics</div><div class="client-id">ID: C-10421</div></div>
+          <span style="font-size:11px;color:var(--color-text-secondary);">Esencial</span>
+          <div class="bar-wrap"><div class="bar-track"><div class="bar-fill" style="width:67%;background:#E24B4A;"></div></div><span style="font-size:11px;">67%</span></div>
+          <span class="pill pill-red">Alto</span>
+          <span style="font-size:11px;color:var(--color-text-secondary);">02/06</span>
+          <span style="font-size:11px;">Carlos R.</span>
+          <button class="btn-sm">Ver detalle</button>
+        </div>
+        <div class="trow">
+          <div><div class="client-name">WebIntelli SAS</div><div class="client-id">ID: C-10387</div></div>
+          <span style="font-size:11px;color:var(--color-text-secondary);">Pro</span>
+          <div class="bar-wrap"><div class="bar-track"><div class="bar-fill" style="width:62%;background:#E24B4A;"></div></div><span style="font-size:11px;">62%</span></div>
+          <span class="pill pill-red">Alto</span>
+          <span style="font-size:11px;color:var(--color-text-secondary);">31/05</span>
+          <span style="font-size:11px;">Laura G.</span>
+          <button class="btn-sm">Ver detalle</button>
+        </div>
+        <div class="trow">
+          <div><div class="client-name">Creative Minds</div><div class="client-id">ID: C-10312</div></div>
+          <span style="font-size:11px;color:var(--color-text-secondary);">Básico</span>
+          <div class="bar-wrap"><div class="bar-track"><div class="bar-fill" style="width:58%;background:#EF9F27;"></div></div><span style="font-size:11px;">58%</span></div>
+          <span class="pill pill-amber">Medio</span>
+          <span style="font-size:11px;color:var(--color-text-secondary);">01/06</span>
+          <span style="font-size:11px;">Javier M.</span>
+          <button class="btn-primary-sm">Contactar</button>
+        </div>
+        <div class="trow">
+          <div><div class="client-name">CloudWare Ltd.</div><div class="client-id">ID: C-10298</div></div>
+          <span style="font-size:11px;color:var(--color-text-secondary);">Esencial</span>
+          <div class="bar-wrap"><div class="bar-track"><div class="bar-fill" style="width:54%;background:#EF9F27;"></div></div><span style="font-size:11px;">54%</span></div>
+          <span class="pill pill-amber">Medio</span>
+          <span style="font-size:11px;color:var(--color-text-secondary);">03/06</span>
+          <span style="font-size:11px;">Sofía H.</span>
+          <button class="btn-sm">Ver detalle</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

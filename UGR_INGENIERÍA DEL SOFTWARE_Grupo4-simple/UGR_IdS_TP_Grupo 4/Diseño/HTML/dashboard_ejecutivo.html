@@ -1,0 +1,151 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); }
+.screen { background: var(--color-background-tertiary); border-radius: var(--border-radius-lg); padding: 0; overflow: hidden; border: 0.5px solid var(--color-border-tertiary); }
+.topbar { background: var(--color-background-primary); border-bottom: 0.5px solid var(--color-border-tertiary); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; }
+.topbar-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+.badge { font-size: 11px; padding: 2px 8px; border-radius: var(--border-radius-md); background: var(--color-background-secondary); color: var(--color-text-secondary); border: 0.5px solid var(--color-border-tertiary); }
+.layout { display: grid; grid-template-columns: 160px 1fr; min-height: 520px; }
+.sidebar { background: #1e2235; padding: 16px 0; }
+.logo { padding: 0 16px 16px; font-size: 14px; font-weight: 500; color: #fff; display: flex; align-items: center; gap: 8px; }
+.logo-icon { width: 22px; height: 22px; background: #4f6ef7; border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+.nav-item { padding: 8px 16px; font-size: 12px; color: rgba(255,255,255,0.55); display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.nav-item.active { background: rgba(255,255,255,0.1); color: #fff; border-radius: 0; }
+.nav-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.5; }
+.nav-item.active .nav-dot { opacity: 1; background: #4f6ef7; }
+.main { padding: 20px; overflow: hidden; }
+.page-header { margin-bottom: 16px; }
+.page-title { font-size: 18px; font-weight: 500; color: var(--color-text-primary); }
+.page-sub { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; }
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px; }
+.kpi { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 12px; }
+.kpi-label { font-size: 11px; color: var(--color-text-secondary); margin-bottom: 4px; }
+.kpi-value { font-size: 20px; font-weight: 500; color: var(--color-text-primary); }
+.kpi-delta { font-size: 11px; margin-top: 2px; }
+.delta-up { color: var(--color-text-danger); }
+.delta-down { color: var(--color-text-success); }
+.charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.chart-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 12px; }
+.chart-title { font-size: 12px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 10px; }
+.bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.bar-label { font-size: 11px; color: var(--color-text-secondary); width: 60px; text-align: right; flex-shrink: 0; }
+.bar-track { flex: 1; background: var(--color-background-secondary); border-radius: 3px; height: 8px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 3px; }
+.bar-val { font-size: 11px; color: var(--color-text-secondary); width: 36px; flex-shrink: 0; }
+.mini-line { display: flex; align-items: flex-end; gap: 4px; height: 60px; }
+.bar-col { flex: 1; border-radius: 3px 3px 0 0; }
+.bottom-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.table-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 12px; }
+.trow { display: flex; align-items: center; justify-content: space-between; padding: 5px 0; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 11px; }
+.trow:last-child { border-bottom: none; }
+.pill { font-size: 10px; padding: 2px 6px; border-radius: 10px; }
+.pill-red { background: var(--color-background-danger); color: var(--color-text-danger); }
+.pill-amber { background: var(--color-background-warning); color: var(--color-text-warning); }
+.pill-green { background: var(--color-background-success); color: var(--color-text-success); }
+.filter-row { display: flex; gap: 8px; margin-bottom: 14px; align-items: center; }
+.filter-btn { font-size: 11px; padding: 4px 10px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-primary); color: var(--color-text-secondary); cursor: pointer; }
+.filter-btn.active { background: var(--color-background-secondary); color: var(--color-text-primary); border-color: var(--color-border-secondary); }
+</style>
+
+<div class="screen">
+  <div class="topbar">
+    <span class="topbar-title">ChurnGuard — Dashboard ejecutivo</span>
+    <span class="badge">Mayo 2024</span>
+  </div>
+  <div class="layout">
+    <div class="sidebar">
+      <div class="logo">
+        <div class="logo-icon"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M6 1L11 10H1L6 1Z" fill="white"/></svg></div>
+        ChurnGuard
+      </div>
+      <div class="nav-item active"><div class="nav-dot"></div> Inicio</div>
+      <div class="nav-item"><div class="nav-dot"></div> Predicción</div>
+      <div class="nav-item"><div class="nav-dot"></div> Clientes en riesgo</div>
+      <div class="nav-item"><div class="nav-dot"></div> Detalle cliente</div>
+      <div class="nav-item"><div class="nav-dot"></div> Scoring masivo</div>
+      <div class="nav-item"><div class="nav-dot"></div> Campañas</div>
+      <div class="nav-item"><div class="nav-dot"></div> Configuración</div>
+    </div>
+    <div class="main">
+      <div class="page-header">
+        <div class="page-title">Resumen ejecutivo</div>
+        <div class="page-sub">Visión general del estado de retención de clientes</div>
+      </div>
+      <div class="filter-row">
+        <span style="font-size:11px;color:var(--color-text-secondary);">Período:</span>
+        <button class="filter-btn">Último mes</button>
+        <button class="filter-btn active">Último trimestre</button>
+        <button class="filter-btn">Último año</button>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi">
+          <div class="kpi-label">Churn rate</div>
+          <div class="kpi-value">8.4%</div>
+          <div class="kpi-delta delta-up">+1.2pp vs. mes anterior</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">MRR en riesgo</div>
+          <div class="kpi-value">$42.1k</div>
+          <div class="kpi-delta delta-up">+$6.3k vs. mes anterior</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Clientes recuperados</div>
+          <div class="kpi-value">342</div>
+          <div class="kpi-delta delta-down">22.1% de alto riesgo</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Retención lograda</div>
+          <div class="kpi-value">18.6%</div>
+          <div class="kpi-delta delta-down">+2.9pp vs. mes anterior</div>
+        </div>
+      </div>
+      <div class="charts-row">
+        <div class="chart-card">
+          <div class="chart-title">Churn rate mensual</div>
+          <div class="mini-line">
+            <div class="bar-col" style="height:35%;background:#378ADD;"></div>
+            <div class="bar-col" style="height:42%;background:#378ADD;"></div>
+            <div class="bar-col" style="height:38%;background:#378ADD;"></div>
+            <div class="bar-col" style="height:50%;background:#378ADD;"></div>
+            <div class="bar-col" style="height:45%;background:#378ADD;"></div>
+            <div class="bar-col" style="height:60%;background:#378ADD;"></div>
+            <div class="bar-col" style="height:55%;background:#378ADD;"></div>
+            <div class="bar-col" style="height:70%;background:#378ADD;"></div>
+            <div class="bar-col" style="height:68%;background:#E24B4A;"></div>
+            <div class="bar-col" style="height:80%;background:#E24B4A;"></div>
+            <div class="bar-col" style="height:85%;background:#E24B4A;"></div>
+            <div class="bar-col" style="height:100%;background:#E24B4A;"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:4px;">
+            <span style="font-size:10px;color:var(--color-text-secondary);">Jun 2023</span>
+            <span style="font-size:10px;color:var(--color-text-secondary);">May 2024</span>
+          </div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">MRR en riesgo por plan</div>
+          <div class="bar-row"><span class="bar-label">Básico</span><div class="bar-track"><div class="bar-fill" style="width:72%;background:#E24B4A;"></div></div><span class="bar-val">$18.4k</span></div>
+          <div class="bar-row"><span class="bar-label">Pro</span><div class="bar-track"><div class="bar-fill" style="width:45%;background:#EF9F27;"></div></div><span class="bar-val">$14.2k</span></div>
+          <div class="bar-row"><span class="bar-label">Enterprise</span><div class="bar-track"><div class="bar-fill" style="width:25%;background:#378ADD;"></div></div><span class="bar-val">$9.5k</span></div>
+        </div>
+      </div>
+      <div class="bottom-row">
+        <div class="table-card">
+          <div class="chart-title">Industrias con mayor churn</div>
+          <div class="trow"><span>FinTech</span><span class="pill pill-red">12.3%</span></div>
+          <div class="trow"><span>EdTech</span><span class="pill pill-red">10.8%</span></div>
+          <div class="trow"><span>DevTools</span><span class="pill pill-amber">7.4%</span></div>
+          <div class="trow"><span>HealthTech</span><span class="pill pill-amber">6.1%</span></div>
+          <div class="trow"><span>E-commerce</span><span class="pill pill-green">3.2%</span></div>
+        </div>
+        <div class="table-card">
+          <div class="chart-title">Impacto de campañas activas</div>
+          <div class="trow"><span>Rescate Pro</span><span style="font-size:11px;">342 retenidos · $12.4k MRR</span></div>
+          <div class="trow"><span>Follow-up Enterprise</span><span style="font-size:11px;">98 retenidos · $9.1k MRR</span></div>
+          <div class="trow"><span>Win-back inactivos</span><span style="font-size:11px;">64 retenidos · $3.8k MRR</span></div>
+          <div class="trow"><span>Bono Fidelidad Q2</span><span style="font-size:11px;color:var(--color-text-secondary);">Aún no iniciada</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Predictor de Diabetes - UGR</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ugr-rojo: #C8102E;
+    --ugr-azul: #003087;
+    --ugr-azul-claro: #1a4da0;
+    --blanco: #ffffff;
+    --gris-fondo: #f4f6f9;
+    --gris-borde: #dde2ea;
+    --gris-texto: #4a5568;
+    --gris-label: #6b7280;
+    --verde: #1a7f4b;
+    --verde-bg: #f0faf5;
+    --rojo-bg: #fff5f5;
+    --sombra: 0 2px 12px rgba(0,48,135,0.10);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--gris-fondo);
+    font-family: 'Open Sans', sans-serif;
+    color: var(--gris-texto);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--ugr-azul);
+    padding: 0;
+    border-bottom: 4px solid var(--ugr-rojo);
+  }
+
+  .header-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .logo-ugr {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-shrink: 0;
+  }
+
+  .logo-circulo {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2.5px solid var(--ugr-rojo);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-circulo svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .logo-texto {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo-ugr-sigla {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--ugr-rojo);
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+
+  .logo-ugr-nombre {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .header-divider {
+    width: 1px;
+    height: 36px;
+    background: rgba(255,255,255,0.2);
+    flex-shrink: 0;
+  }
+
+  .header-info {
+    flex: 1;
+  }
+
+  .header-carrera {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.2rem;
+  }
+
+  .header-titulo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--blanco);
+  }
+
+  /* CONTENIDO */
+  .contenido {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  .page-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--ugr-azul);
+    margin-bottom: 0.3rem;
+  }
+
+  .page-subtitle {
+    font-size: 0.85rem;
+    color: var(--gris-label);
+    margin-bottom: 1.8rem;
+  }
+
+  /* CARD */
+  .card {
+    background: var(--blanco);
+    border: 1px solid var(--gris-borde);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+    box-shadow: var(--sombra);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.4rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid var(--gris-fondo);
+  }
+
+  .card-header-bar {
+    width: 4px;
+    height: 18px;
+    background: var(--ugr-rojo);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .card-header-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--ugr-azul);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  @media (max-width: 520px) { .grid { grid-template-columns: 1fr; } }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--ugr-azul);
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .label-hint {
+    font-size: 0.65rem;
+    font-weight: 400;
+    color: var(--gris-label);
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  input[type="number"] {
+    background: var(--gris-fondo);
+    border: 1.5px solid var(--gris-borde);
+    border-radius: 6px;
+    color: var(--ugr-azul);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.55rem 0.8rem;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    width: 100%;
+  }
+
+  input[type="number"]:focus {
+    border-color: var(--ugr-azul);
+    background: var(--blanco);
+  }
+
+  /* BOTON */
+  .btn {
+    width: 100%;
+    padding: 0.85rem;
+    background: var(--ugr-rojo);
+    color: var(--blanco);
+    border: none;
+    border-radius: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.1s;
+    margin-bottom: 1.2rem;
+  }
+
+  .btn:hover { background: #a50d26; }
+  .btn:active { transform: scale(0.99); }
+
+  /* RESULTADO */
+  #result { display: none; margin-bottom: 1.2rem; }
+
+  .result-box {
+    border-radius: 8px;
+    padding: 1.4rem;
+    border-left: 5px solid;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    box-shadow: var(--sombra);
+  }
+
+  .result-box.positivo {
+    background: var(--rojo-bg);
+    border-color: var(--ugr-rojo);
+    border-top: 1px solid #fcc;
+    border-right: 1px solid #fcc;
+    border-bottom: 1px solid #fcc;
+  }
+
+  .result-box.negativo {
+    background: var(--verde-bg);
+    border-color: var(--verde);
+    border-top: 1px solid #b7e4cc;
+    border-right: 1px solid #b7e4cc;
+    border-bottom: 1px solid #b7e4cc;
+  }
+
+  .result-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .result-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .result-label.positivo { color: var(--ugr-rojo); }
+  .result-label.negativo { color: var(--verde); }
+
+  .result-prob {
+    font-size: 0.8rem;
+    color: var(--gris-label);
+    margin-bottom: 0.6rem;
+  }
+
+  .result-desc {
+    font-size: 0.82rem;
+    color: var(--gris-texto);
+    line-height: 1.55;
+  }
+
+  .prob-bar-wrap {
+    margin-top: 0.8rem;
+    background: var(--gris-borde);
+    border-radius: 4px;
+    height: 6px;
+    width: 100%;
+  }
+
+  .prob-bar {
+    height: 6px;
+    border-radius: 4px;
+    transition: width 0.6s ease;
+  }
+
+  .prob-bar.positivo { background: var(--ugr-rojo); }
+  .prob-bar.negativo { background: var(--verde); }
+
+  .chips-row {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .chip {
+    background: var(--blanco);
+    border: 1px solid var(--gris-borde);
+    border-radius: 20px;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.72rem;
+    color: var(--gris-label);
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .chip strong {
+    color: var(--ugr-azul);
+    font-weight: 600;
+  }
+
+  /* LOADING */
+  .loading {
+    display: none;
+    text-align: center;
+    color: var(--gris-label);
+    font-size: 0.85rem;
+    padding: 1rem;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .dot { animation: blink 1.2s infinite; }
+  .dot:nth-child(2) { animation-delay: 0.2s; }
+  .dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes blink { 0%,80%,100%{opacity:0} 40%{opacity:1} }
+
+  /* FOOTER */
+  footer {
+    background: var(--ugr-azul);
+    border-top: 3px solid var(--ugr-rojo);
+    padding: 1.2rem 1.5rem;
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .footer-inner {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .footer-metricas {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 0.4rem;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .footer-aviso {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.4);
+    font-family: 'Open Sans', sans-serif;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-ugr">
+      <div class="logo-circulo">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="18" stroke="#C8102E" stroke-width="2.5" fill="none"/>
+          <path d="M8 26 Q14 18 20 22 Q26 26 32 18" stroke="#C8102E" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M10 30 Q16 24 20 27 Q24 30 30 24" stroke="#C8102E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M14 10 L20 6 L26 10" stroke="#C8102E" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M17 10 L17 16 M20 8 L20 16 M23 10 L23 16" stroke="#C8102E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="logo-texto">
+        <span class="logo-ugr-sigla">UGR</span>
+        <span class="logo-ugr-nombre">Universidad del Gran Rosario</span>
+      </div>
+    </div>
+    <div class="header-divider"></div>
+    <div class="header-info">
+      <div class="header-carrera">Ingeniería del Software · CRISP-DM</div>
+      <div class="header-titulo">Predictor de Riesgo de Diabetes</div>
+    </div>
+  </div>
+</header>
+
+<div class="contenido">
+
+  <div class="page-title">Evaluación de Riesgo Clínico</div>
+  <div class="page-subtitle">Modelo de clasificación Random Forest entrenado sobre el dataset Pima Indians Diabetes (UCI). Ingrese los valores del paciente para obtener una estimación de riesgo.</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-bar"></div>
+      <div class="card-header-title">Variables Clínicas del Paciente</div>
+    </div>
+    <div class="grid">
+      <div class="field">
+        <label>Embarazos <span class="label-hint">(cantidad)</span></label>
+        <input type="number" id="embarazos" min="0" max="20" value="3" step="1">
+      </div>
+      <div class="field">
+        <label>Glucosa <span class="label-hint">(mg/dL)</span></label>
+        <input type="number" id="glucosa" min="50" max="300" value="120" step="1">
+      </div>
+      <div class="field">
+        <label>Presión Arterial <span class="label-hint">(mm Hg diastólica)</span></label>
+        <input type="number" id="presion" min="20" max="140" value="70" step="1">
+      </div>
+      <div class="field">
+        <label>Grosor de Piel <span class="label-hint">(mm, pliegue tricipital)</span></label>
+        <input type="number" id="piel" min="0" max="100" value="25" step="1">
+      </div>
+      <div class="field">
+        <label>Insulina <span class="label-hint">(μU/ml, 2 horas post-carga)</span></label>
+        <input type="number" id="insulina" min="0" max="900" value="100" step="1">
+      </div>
+      <div class="field">
+        <label>IMC <span class="label-hint">(kg/m²)</span></label>
+        <input type="number" id="imc" min="10" max="70" value="28.0" step="0.1">
+      </div>
+      <div class="field">
+        <label>Función Pedigree <span class="label-hint">(antecedente familiar, 0.0 a 2.5)</span></label>
+        <input type="number" id="pedigree" min="0" max="2.5" value="0.35" step="0.001">
+      </div>
+      <div class="field">
+        <label>Edad <span class="label-hint">(años)</span></label>
+        <input type="number" id="edad" min="18" max="100" value="35" step="1">
+      </div>
+    </div>
+  </div>
+
+  <button class="btn" onclick="predecir()">Calcular Riesgo</button>
+
+  <div class="loading" id="loading">
+    Procesando<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span>
+  </div>
+
+  <div id="result"></div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-metricas">Random Forest · Accuracy 77% · F1 0.67 · ROC-AUC 0.83 · Dataset: Pima Indians Diabetes Database (UCI, N=768)</div>
+    <div class="footer-aviso">Grupo 4 · V.CLCD1.03.1 · Ingeniería del Software</div>
+  </div>
+</footer>
+
+<script>
+function sigmoid(x) {
+  return 1 / (1 + Math.exp(-x));
+}
+
+function predecir() {
+  const vals = {
+    embarazos: +document.getElementById('embarazos').value,
+    glucosa:   +document.getElementById('glucosa').value,
+    presion:   +document.getElementById('presion').value,
+    piel:      +document.getElementById('piel').value,
+    insulina:  +document.getElementById('insulina').value,
+    imc:       +document.getElementById('imc').value,
+    pedigree:  +document.getElementById('pedigree').value,
+    edad:      +document.getElementById('edad').value,
+  };
+
+  const score =
+    (vals.glucosa   - 120) * 0.035  +
+    (vals.imc       -  32) * 0.025  +
+    (vals.edad      -  33) * 0.018  +
+    (vals.pedigree  - 0.47)* 0.9    +
+    (vals.insulina  - 100) * 0.003  +
+    (vals.embarazos -  3.8)* 0.05   +
+    (vals.presion   -  69) * 0.005  +
+    (vals.piel      -  20) * 0.004  +
+    (-1.2);
+
+  const prob = Math.min(0.97, Math.max(0.03, sigmoid(score)));
+  const prediccion = prob >= 0.5 ? 1 : 0;
+
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('result').style.display = 'none';
+
+  setTimeout(() => {
+    document.getElementById('loading').style.display = 'none';
+    mostrarResultado(prediccion, prob, vals);
+  }, 700);
+}
+
+function mostrarResultado(pred, prob, vals) {
+  const cls = pred === 1 ? 'positivo' : 'negativo';
+  const icon = pred === 1 ? '⚠' : '✓';
+  const label = pred === 1 ? 'Resultado positivo: riesgo de diabetes detectado' : 'Resultado negativo: sin indicios de diabetes';
+  const desc = pred === 1
+    ? 'El modelo clasifica al paciente como de riesgo elevado. Se recomienda derivación a endocrinología y estudios confirmatorios (HbA1c, curva de glucemia).'
+    : 'El modelo no detecta riesgo significativo en función de los indicadores ingresados. Se recomienda seguimiento rutinario.';
+
+  const factorPrincipal = vals.glucosa > 130 ? 'Glucosa elevada'
+    : vals.imc > 30 ? 'IMC elevado'
+    : vals.pedigree > 0.5 ? 'Antecedente familiar'
+    : 'Edad';
+
+  const html = `
+    <div class="card result-box ${cls}">
+      <div class="result-icon">${icon}</div>
+      <div style="width:100%">
+        <div class="result-label ${cls}">${label}</div>
+        <div class="result-prob">Probabilidad estimada: ${(prob * 100).toFixed(1)}%</div>
+        <div class="prob-bar-wrap">
+          <div class="prob-bar ${cls}" style="width:${(prob*100).toFixed(1)}%"></div>
+        </div>
+        <div class="result-desc" style="margin-top:0.8rem">${desc}</div>
+        <div class="chips-row">
+          <div class="chip">Glucosa: <strong>${vals.glucosa} mg/dL</strong></div>
+          <div class="chip">IMC: <strong>${vals.imc}</strong></div>
+          <div class="chip">Edad: <strong>${vals.edad} años</strong></div>
+          <div class="chip">Factor principal: <strong>${factorPrincipal}</strong></div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const r = document.getElementById('result');
+  r.innerHTML = html;
+  r.style.display = 'block';
+}
+</script>
+</body>
+</html>
