@@ -1,0 +1,120 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.screen { background: var(--color-background-tertiary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); overflow: hidden; }
+.layout { display: grid; grid-template-columns: 160px 1fr; min-height: 520px; }
+.sidebar { background: #1e2235; padding: 16px 0; }
+.logo { padding: 0 16px 16px; font-size: 14px; font-weight: 500; color: #fff; display: flex; align-items: center; gap: 8px; }
+.logo-icon { width: 22px; height: 22px; background: #4f6ef7; border-radius: 6px; }
+.nav-item { padding: 8px 16px; font-size: 12px; color: rgba(255,255,255,0.55); display: flex; align-items: center; gap: 8px; }
+.nav-item.active { background: rgba(255,255,255,0.1); color: #fff; }
+.nav-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.5; }
+.nav-item.active .nav-dot { opacity: 1; background: #4f6ef7; }
+.main { padding: 20px; }
+.page-title { font-size: 18px; font-weight: 500; color: var(--color-text-primary); }
+.page-sub { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; margin-bottom: 14px; }
+.content-grid { display: grid; grid-template-columns: 1fr 280px; gap: 12px; }
+.card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 14px; }
+.upload-zone { border: 1.5px dashed var(--color-border-secondary); border-radius: var(--border-radius-md); padding: 28px 20px; text-align: center; background: var(--color-background-secondary); margin-bottom: 12px; }
+.upload-icon { font-size: 24px; margin-bottom: 6px; }
+.upload-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+.upload-sub { font-size: 11px; color: var(--color-text-secondary); margin-top: 4px; }
+.upload-btn { margin-top: 10px; padding: 7px 18px; background: #4f6ef7; color: #fff; border: none; border-radius: var(--border-radius-md); font-size: 12px; cursor: pointer; }
+.file-item { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); background: var(--color-background-primary); margin-bottom: 10px; }
+.file-icon { width: 28px; height: 28px; background: var(--color-background-info); border-radius: 6px; flex-shrink: 0; }
+.file-name { font-size: 12px; font-weight: 500; color: var(--color-text-primary); }
+.file-size { font-size: 10px; color: var(--color-text-secondary); }
+.ready-pill { margin-left: auto; font-size: 10px; padding: 2px 8px; border-radius: 10px; background: var(--color-background-success); color: var(--color-text-success); }
+.process-btn { padding: 9px 18px; background: #4f6ef7; color: #fff; border: none; border-radius: var(--border-radius-md); font-size: 12px; cursor: pointer; margin-right: 8px; }
+.adv-btn { padding: 9px 14px; background: var(--color-background-primary); color: var(--color-text-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); font-size: 12px; cursor: pointer; }
+.status-card { margin-bottom: 12px; }
+.status-label { font-size: 10px; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+.model-name { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+.model-date { font-size: 11px; color: var(--color-text-secondary); }
+.stat-row { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 11px; }
+.stat-row:last-child { border-bottom: none; }
+.stat-key { color: var(--color-text-secondary); }
+.stat-val { color: var(--color-text-primary); font-weight: 500; }
+.table-title { font-size: 12px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 8px; }
+.thead { display: grid; grid-template-columns: 2fr 1fr 1fr 2fr 1fr; background: var(--color-background-secondary); padding: 6px 10px; font-size: 10px; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.04em; border-radius: var(--border-radius-md) var(--border-radius-md) 0 0; }
+.trow { display: grid; grid-template-columns: 2fr 1fr 1fr 2fr 1fr; padding: 7px 10px; border-bottom: 0.5px solid var(--color-border-tertiary); align-items: center; font-size: 11px; }
+.trow:last-child { border-bottom: none; }
+.pill { font-size: 10px; padding: 2px 7px; border-radius: 10px; }
+.pill-red { background: var(--color-background-danger); color: var(--color-text-danger); }
+.pill-amber { background: var(--color-background-warning); color: var(--color-text-warning); }
+.pill-green { background: var(--color-background-success); color: var(--color-text-success); }
+.dot-ok { width: 7px; height: 7px; border-radius: 50%; background: #639922; display: inline-block; margin-right: 4px; }
+.topbar { background: var(--color-background-primary); border-bottom: 0.5px solid var(--color-border-tertiary); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; }
+.topbar-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+.badge-teal { font-size: 11px; padding: 3px 10px; border-radius: 10px; background: #E1F5EE; color: #0F6E56; }
+</style>
+
+<div class="screen">
+  <div class="topbar">
+    <span class="topbar-title">ChurnGuard — Scoring masivo</span>
+    <span class="badge-teal">Desarrollo · Dirección</span>
+  </div>
+  <div class="layout">
+    <div class="sidebar">
+      <div class="logo"><div class="logo-icon"></div>ChurnGuard</div>
+      <div class="nav-item"><div class="nav-dot"></div>Inicio</div>
+      <div class="nav-item"><div class="nav-dot"></div>Predicción</div>
+      <div class="nav-item"><div class="nav-dot"></div>Clientes en riesgo</div>
+      <div class="nav-item"><div class="nav-dot"></div>Detalle cliente</div>
+      <div class="nav-item active"><div class="nav-dot"></div>Scoring masivo</div>
+      <div class="nav-item"><div class="nav-dot"></div>Campañas</div>
+      <div class="nav-item"><div class="nav-dot"></div>Configuración</div>
+    </div>
+    <div class="main">
+      <div class="page-title">Scoring masivo</div>
+      <div class="page-sub">Subí un CSV con datos de clientes y obtenés el score de churn predicho.</div>
+      <div class="content-grid">
+        <div>
+          <div class="upload-zone">
+            <div class="upload-icon">↑</div>
+            <div class="upload-title">Arrastrá o seleccioná un archivo CSV</div>
+            <div class="upload-sub">El archivo debe tener encabezado · Máx. 50.000 filas · 50 MB</div>
+            <button class="upload-btn">Subir archivo</button>
+          </div>
+          <div class="file-item">
+            <div class="file-icon"></div>
+            <div>
+              <div class="file-name">clientes_mayo_2024.csv</div>
+              <div class="file-size">12.842 filas · 2.4 MB</div>
+            </div>
+            <span class="ready-pill">Listo para procesar</span>
+          </div>
+          <div style="margin-bottom:14px;">
+            <button class="process-btn">Procesar lote</button>
+            <button class="adv-btn">Opciones avanzadas</button>
+          </div>
+          <div class="card">
+            <div class="table-title">Vista previa de resultados (primeras 6 filas)</div>
+            <div class="thead"><span>Cliente</span><span>Score</span><span>Riesgo</span><span>Recomendación</span><span>Estado</span></div>
+            <div class="trow"><span>TechNova Solutions</span><span style="font-weight:500;">0.87</span><span class="pill pill-red">Alto</span><span style="color:var(--color-text-secondary);">Contactar con oferta</span><span><span class="dot-ok"></span>OK</span></div>
+            <div class="trow"><span>DataPro Analytics</span><span style="font-weight:500;">0.72</span><span class="pill pill-red">Alto</span><span style="color:var(--color-text-secondary);">Ofrecer incentivo</span><span><span class="dot-ok"></span>OK</span></div>
+            <div class="trow"><span>WebIntelli SAS</span><span style="font-weight:500;">0.48</span><span class="pill pill-amber">Medio</span><span style="color:var(--color-text-secondary);">Monitorear alertas</span><span><span class="dot-ok"></span>OK</span></div>
+            <div class="trow"><span>Creative Minds</span><span style="font-weight:500;">0.31</span><span class="pill pill-amber">Medio</span><span style="color:var(--color-text-secondary);">Enviar contenido de valor</span><span><span class="dot-ok"></span>OK</span></div>
+            <div class="trow"><span>CloudWare Ltd.</span><span style="font-weight:500;">0.14</span><span class="pill pill-green">Bajo</span><span style="color:var(--color-text-secondary);">Mantener engagement</span><span><span class="dot-ok"></span>OK</span></div>
+            <div class="trow"><span>InnovaTech Group</span><span style="font-weight:500;">0.09</span><span class="pill pill-green">Bajo</span><span style="color:var(--color-text-secondary);">Mantener engagement</span><span><span class="dot-ok"></span>OK</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="card status-card">
+            <div class="status-label">Modelo activo</div>
+            <div class="model-name">ChurnGuard v2.1</div>
+            <div class="model-date">Actualizado: 12/05/2024</div>
+          </div>
+          <div class="card">
+            <div class="status-label">Última ejecución</div>
+            <div class="stat-row"><span class="stat-key">Archivo</span><span class="stat-val">clientes_abril_2024.csv</span></div>
+            <div class="stat-row"><span class="stat-key">Fecha</span><span class="stat-val">06/05/2024 14:32</span></div>
+            <div class="stat-row"><span class="stat-key">Registros</span><span class="stat-val">9.842</span></div>
+            <div class="stat-row"><span class="stat-key">Tiempo total</span><span class="stat-val">00:01:24</span></div>
+            <div class="stat-row"><span class="stat-key">Estado</span><span class="stat-val" style="color:var(--color-text-success);">Completado</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,110 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.screen { background: var(--color-background-tertiary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); overflow: hidden; }
+.topbar { background: var(--color-background-primary); border-bottom: 0.5px solid var(--color-border-tertiary); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; }
+.topbar-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+.badge-blue { font-size: 11px; padding: 3px 10px; border-radius: 10px; background: var(--color-background-info); color: var(--color-text-info); }
+.layout { display: grid; grid-template-columns: 160px 1fr; min-height: 520px; }
+.sidebar { background: #1e2235; padding: 16px 0; }
+.logo { padding: 0 16px 16px; font-size: 14px; font-weight: 500; color: #fff; display: flex; align-items: center; gap: 8px; }
+.logo-icon { width: 22px; height: 22px; background: #4f6ef7; border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+.nav-item { padding: 8px 16px; font-size: 12px; color: rgba(255,255,255,0.55); display: flex; align-items: center; gap: 8px; }
+.nav-item.active { background: rgba(255,255,255,0.1); color: #fff; }
+.nav-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.5; }
+.nav-item.active .nav-dot { opacity: 1; background: #4f6ef7; }
+.main { padding: 20px; }
+.page-title { font-size: 18px; font-weight: 500; color: var(--color-text-primary); }
+.page-sub { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; margin-bottom: 16px; }
+.content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 14px; }
+.card-title { font-size: 12px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 12px; }
+.field { margin-bottom: 10px; }
+.field-label { font-size: 11px; color: var(--color-text-secondary); margin-bottom: 4px; }
+.field-val { font-size: 13px; color: var(--color-text-primary); background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 6px 10px; }
+.gauge-wrap { text-align: center; padding: 8px 0; }
+.gauge-pct { font-size: 28px; font-weight: 500; color: var(--color-text-primary); }
+.gauge-label { font-size: 11px; color: var(--color-text-secondary); }
+.risk-badge { display: inline-block; margin-top: 6px; font-size: 12px; padding: 3px 12px; border-radius: 10px; background: var(--color-background-danger); color: var(--color-text-danger); font-weight: 500; }
+.alert-box { background: var(--color-background-danger); border-radius: var(--border-radius-md); padding: 8px 12px; font-size: 12px; color: var(--color-text-danger); margin-top: 10px; }
+.factor { display: flex; align-items: center; gap: 8px; padding: 5px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.factor:last-child { border-bottom: none; }
+.factor-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.factor-text { font-size: 11px; color: var(--color-text-primary); flex: 1; }
+.factor-sub { font-size: 10px; color: var(--color-text-secondary); }
+.action-item { display: flex; align-items: flex-start; gap: 8px; padding: 5px 0; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 11px; }
+.action-item:last-child { border-bottom: none; }
+.check { width: 14px; height: 14px; border-radius: 50%; background: var(--color-background-success); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.calc-btn { margin-top: 12px; width: 100%; padding: 10px; background: #4f6ef7; color: #fff; border: none; border-radius: var(--border-radius-md); font-size: 13px; font-weight: 500; cursor: pointer; }
+</style>
+
+<div class="screen">
+  <div class="topbar">
+    <span class="topbar-title">ChurnGuard — Predicción individual</span>
+    <span class="badge-blue">Soporte / Ejecutivos de cuenta</span>
+  </div>
+  <div class="layout">
+    <div class="sidebar">
+      <div class="logo">
+        <div class="logo-icon"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M6 1L11 10H1L6 1Z" fill="white"/></svg></div>
+        ChurnGuard
+      </div>
+      <div class="nav-item"><div class="nav-dot"></div> Inicio</div>
+      <div class="nav-item active"><div class="nav-dot"></div> Predicción</div>
+      <div class="nav-item"><div class="nav-dot"></div> Clientes en riesgo</div>
+      <div class="nav-item"><div class="nav-dot"></div> Detalle cliente</div>
+      <div class="nav-item"><div class="nav-dot"></div> Scoring masivo</div>
+      <div class="nav-item"><div class="nav-dot"></div> Campañas</div>
+      <div class="nav-item"><div class="nav-dot"></div> Configuración</div>
+    </div>
+    <div class="main">
+      <div class="page-title">Predicción individual</div>
+      <div class="page-sub">Ingresá o revisá los datos del cliente para estimar su probabilidad de churn.</div>
+      <div class="content-grid">
+        <div>
+          <div class="card" style="margin-bottom:12px;">
+            <div class="card-title">Datos del cliente</div>
+            <div class="field"><div class="field-label">Cliente</div><div class="field-val">TechNova Solutions S.A.</div></div>
+            <div class="field"><div class="field-label">Plan</div><div class="field-val">Básico</div></div>
+            <div class="field"><div class="field-label">Antigüedad</div><div class="field-val">8 meses</div></div>
+            <div class="field"><div class="field-label">Uso mensual</div><div class="field-val">24 días activos</div></div>
+            <div class="field"><div class="field-label">Tickets soporte (30 días)</div><div class="field-val">6</div></div>
+            <div class="field"><div class="field-label">Satisfacción (NPS)</div><div class="field-val">4 / 10</div></div>
+            <div class="field"><div class="field-label">Auto-renovación</div><div class="field-val">No</div></div>
+            <button class="calc-btn">Calcular riesgo</button>
+          </div>
+        </div>
+        <div>
+          <div class="card" style="margin-bottom:12px;">
+            <div class="card-title">Resultado de la predicción</div>
+            <div class="gauge-wrap">
+              <svg width="140" height="80" viewBox="0 0 140 80">
+                <path d="M10,70 A60,60 0 0,1 130,70" fill="none" stroke="#e5e5e5" stroke-width="10" stroke-linecap="round"/>
+                <path d="M10,70 A60,60 0 0,1 130,70" fill="none" stroke="url(#g)" stroke-width="10" stroke-linecap="round" stroke-dasharray="188" stroke-dashoffset="56"/>
+                <defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#639922"/><stop offset="40%" stop-color="#EF9F27"/><stop offset="100%" stop-color="#E24B4A"/></linearGradient></defs>
+                <text x="70" y="65" text-anchor="middle" font-size="22" font-weight="500" fill="#E24B4A">72%</text>
+              </svg>
+              <div class="gauge-label">Probabilidad de churn</div>
+              <div class="risk-badge">Alto</div>
+            </div>
+            <div class="alert-box">Este cliente tiene alta probabilidad de cancelar en los próximos 30 días.</div>
+          </div>
+          <div class="card" style="margin-bottom:12px;">
+            <div class="card-title">Factores clave</div>
+            <div class="factor"><div class="factor-dot" style="background:#E24B4A;"></div><div><div class="factor-text">Alto número de tickets de soporte</div><div class="factor-sub">6 tickets vs. promedio 2.1</div></div></div>
+            <div class="factor"><div class="factor-dot" style="background:#E24B4A;"></div><div><div class="factor-text">Bajo nivel de satisfacción (NPS)</div><div class="factor-sub">4/10, por debajo del promedio 6.8</div></div></div>
+            <div class="factor"><div class="factor-dot" style="background:#E24B4A;"></div><div><div class="factor-text">Sin auto-renovación activa</div><div class="factor-sub">+28% de riesgo</div></div></div>
+            <div class="factor"><div class="factor-dot" style="background:#378ADD;"></div><div><div class="factor-text">Antigüedad moderada</div><div class="factor-sub">8 meses reduce levemente el riesgo</div></div></div>
+          </div>
+          <div class="card">
+            <div class="card-title">Acciones recomendadas</div>
+            <div class="action-item"><div class="check"></div><span>Contactar al cliente en los próximos 3 días</span></div>
+            <div class="action-item"><div class="check"></div><span>Revisar y resolver tickets abiertos</span></div>
+            <div class="action-item"><div class="check"></div><span>Ofrecer capacitación personalizada</span></div>
+            <div class="action-item"><div class="check"></div><span>Evaluar incentivo de retención</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

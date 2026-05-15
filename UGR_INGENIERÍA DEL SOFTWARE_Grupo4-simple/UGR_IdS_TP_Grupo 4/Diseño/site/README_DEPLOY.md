@@ -1,6 +1,6 @@
 # Deploy de ChurnGuard (sitio estático)
 
-Este directorio contiene un **viewer** estático para navegar las pantallas ubicadas en `../HTML`.
+Este directorio contiene un **Home** (`index.html`) y un **visor** (`viewer.html`) para navegar pantallas.
 
 ## Cómo verlo localmente
 
@@ -34,6 +34,6 @@ Recomendado: **GitHub Pages**.
 
 Luego, en la notebook, colocá el link a:
 
-- `https://TU_USUARIO.github.io/TU_REPO/UGR_INGENIERÍA%20DEL%20SOFTWARE_Grupo4-simple/UGR_IdS_TP_Grupo%204/Diseño/site/`
+- `https://TU_USUARIO.github.io/TU_REPO/.../UGR_IdS_TP_Grupo%204/Diseño/site/`
 
 Alternativa: Netlify (drag & drop) o Vercel (static).

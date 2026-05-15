@@ -1,11 +1,11 @@
 const VIEWS = [
-  { key: 'dashboard_ejecutivo', label: 'Dashboard ejecutivo', file: '../HTML/dashboard_ejecutivo.html' },
-  { key: 'prediccion_individual', label: 'Predicción individual', file: '../HTML/prediccion_individual.html' },
-  { key: 'clientes_en_riesgo', label: 'Clientes en riesgo', file: '../HTML/clientes_en_riesgo.html' },
-  { key: 'detalle_cliente', label: 'Detalle cliente', file: '../HTML/detalle_cliente.html' },
-  { key: 'scoring_masivo', label: 'Scoring masivo', file: '../HTML/scoring_masivo.html' },
-  { key: 'campanas_retencion', label: 'Campañas', file: '../HTML/campanas_retencion.html' },
-  { key: 'analisis_features_desarrollo', label: 'Análisis de producto', file: '../HTML/analisis_features_desarrollo.html' },
+  { key: 'dashboard_ejecutivo', label: 'Dashboard ejecutivo', file: './views/dashboard_ejecutivo.html' },
+  { key: 'prediccion_individual', label: 'Predicción individual', file: './views/prediccion_individual.html' },
+  { key: 'clientes_en_riesgo', label: 'Clientes en riesgo', file: './views/clientes_en_riesgo.html' },
+  { key: 'detalle_cliente', label: 'Detalle cliente', file: './views/detalle_cliente.html' },
+  { key: 'scoring_masivo', label: 'Scoring masivo', file: './views/scoring_masivo.html' },
+  { key: 'campanas_retencion', label: 'Campañas', file: './views/campanas_retencion.html' },
+  { key: 'analisis_features_desarrollo', label: 'Análisis de producto', file: './views/analisis_features_desarrollo.html' },
 ];
 
 function getViewKeyFromUrl() {
@@ -50,7 +50,7 @@ async function loadView(key) {
       <div style="padding:14px;border:1px solid rgba(15,23,42,0.12);border-radius:12px;background:#fff;max-width:980px;margin:0 auto;">
         <div style="font-weight:600;">No se pudo cargar la vista.</div>
         <div style="margin-top:6px;color:rgba(15,23,42,0.62);font-size:12px;line-height:1.5;">
-          Revisá que existan los archivos en <code>../HTML/</code> y que el sitio esté siendo servido por HTTP.
+          Revisá que existan los archivos en <code>./views/</code> y que el sitio esté siendo servido por HTTP.
           Si abrís el archivo directamente con <code>file://</code>, el navegador puede bloquear <code>fetch()</code>.
         </div>
       </div>
@@ -63,7 +63,7 @@ async function loadView(key) {
 }
 
 function wireNav() {
-  document.querySelectorAll('.nav__item').forEach(btn => {
+  document.querySelectorAll('button.nav__item[data-view]').forEach(btn => {
     btn.addEventListener('click', () => {
       loadView(btn.dataset.view);
     });
